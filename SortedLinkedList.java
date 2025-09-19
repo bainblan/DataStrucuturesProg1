@@ -1,4 +1,6 @@
 package cs2720.p1;
+import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 
 public class SortedLinkedList {
     private NodeType head;
@@ -34,7 +36,7 @@ public class SortedLinkedList {
         }
 
         if(curr != null && curr.info.compareTo(item) == 0){
-            throw new IllegalArgumentExcpetion("Item already exists");
+            throw new IllegalArgumentException("Item already exists");
         }
 
         prev.next = newNode;
@@ -90,15 +92,77 @@ public class SortedLinkedList {
     }
 
     public void deleteAlternateNodes(){
+        if(head == null || head.next == null){
+            return;
+        }
 
+        NodeType curr = head;
+        NodeType prev = null;
+        boolean delete = false;
+
+        while(curr != null){
+            if(delete){
+                prev.next = curr.next;
+                curr = curr.next;
+                delete = false;
+            } else {
+                prev = curr;
+                curr = curr.next;
+                delete = true;
+            }
+        }
     }
 
     public void mergeList(SortedLinkedList other){
+        NodeType curr1 = this.head;
+        NodeType curr2 = other.head;
+        SortedLinkedList merged = new SortedLinkedList();
 
+        while(curr1 != null && curr2 != null){
+            if(curr1.info.compareTo(curr2.info) < 0){
+                merged.insertItem(curr1.info);
+                curr1 = curr1.next;
+            } else if(curr1.info.compareTo(curr2.info) > 0){
+                merged.insertItem(curr2.info);
+                curr2 = curr2.next;
+            } else {
+                merged.insertItem(curr1.info);
+                curr1 = curr1.next;
+                curr2 = curr2.next;
+            }
+        }
+
+        while(curr1 != null){
+            merged.insertItem(curr1.info);
+            curr1 = curr1.next;
+        }
+
+        while(curr2 != null){
+            merged.insertItem(curr2.info);
+            curr2 = curr2.next;
+        }
+
+        this.head = merged.head;
     }
 
     public void intersection(SortedLinkedList other){
+        NodeType curr1 = this.head;
+        NodeType curr2 = other.head;
+        SortedLinkedList intersected = new SortedLinkedList();
 
+        while(curr1 != null && curr2 != null){
+            if(curr1.info.compareTo(curr2.info) < 0){
+                curr1 = curr1.next;
+            } else if(curr1.info.compareTo(curr2.info) > 0){
+                curr2 = curr2.next;
+            } else {
+                intersected.insertItem(curr1.info);
+                curr1 = curr1.next;
+                curr2 = curr2.next;
+            }
+        }
+
+        this.head = intersected.head;
     }
 
     public void printList(){

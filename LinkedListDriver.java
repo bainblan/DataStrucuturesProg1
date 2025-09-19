@@ -44,7 +44,7 @@ public class LinkedListDriver {
             } else if(command == 'l'){
                 System.out.println("The length of the list is " + list.getLength());
             } else if(command == 'q'){
-                System.out..println("Exiting program");
+                System.out.println("Exiting program");
             } else {
                 System.out.println("Invalid command, try again!");
             }
