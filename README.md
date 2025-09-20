@@ -1,3 +1,5 @@
+This README file does not format in Github the way it does when I'm editing the text, so just keep that in mind if everything looks smushed together
+
 Compile: javac -d bin *.java
 Run: java -cp bin cs2720.p1.LinkedListDriver input.txt
 
