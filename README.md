@@ -1,5 +1,4 @@
 Compile: javac -d bin *.java
-
 Run: java -cp bin cs2720.p1.LinkedListDriver input.txt
 
 Baines Blanton and Caleb Cort collaborated on this project
@@ -9,21 +8,14 @@ Baines.Blanton@uga.edu
 Caleb.Cort@uga.edu
 
 Baines's Contribution: deleteAlternate, mergeList, and intersection methods, as well as the if statements and methods called by them for the 1 character commands in the driver class.
-
 Caleb's Contribution: Everything else.
 
 Merge operation Big O: O(n + m)
-
 Explanation: 
-
 -The while loop runs n times, as long as the shorter list.
-
 -In the loop, inserting an item into merged is O(m) because it has to traverse through the linked list
-
 -The other operations within the loop are assignments and comparisons, so O(1), but at most O(n)
-
 -With each loop iteration, O(m + n)
-
 -n is the length of the first list and m is the length of the second.
 
 mergeList(SortedLinkedList other) 
